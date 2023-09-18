@@ -18,13 +18,13 @@ export const Stars: FC<StarsProps> = ({
     if (typeof starValue === "number") {
       setValue(starValue);
     } else {
-      setValue(null)
+      setValue(null);
     }
   }, [starValue]);
 
   function handleClick(value: number) {
-    console.log("clicked " + value)
-    setValue(value)
+    console.log("clicked " + value);
+    setValue(value);
   }
 
   function renderStars(
@@ -35,16 +35,16 @@ export const Stars: FC<StarsProps> = ({
 
     for (let i = 0; i < numberOfStars; i++) {
       array.push(
-          <Star isSelected={i == value - 1} />
+        <a key={i} onClick={() => handleClick(i)}>
+          <Star
+            isSelected={typeof value === "number" ? i == value - 1 : false}
+          />
+        </a>
       );
     }
 
     return array;
   }
 
-  return (
-    <>
-      {renderStars(value, numberOfStars)}
-    </>
-  );
+  return <div data-testid="starsComponent">{renderStars(value, numberOfStars)}</div>;
 };

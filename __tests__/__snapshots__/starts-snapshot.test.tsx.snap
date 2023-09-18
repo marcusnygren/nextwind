@@ -2,10 +2,24 @@
 
 exports[`renders homepage unchanged 1`] = `
 <div>
-  0
-  0
-  1
-  0
-  0
+  <div
+    data-testid="starsComponent"
+  >
+    <a>
+      0
+    </a>
+    <a>
+      0
+    </a>
+    <a>
+      1
+    </a>
+    <a>
+      0
+    </a>
+    <a>
+      0
+    </a>
+  </div>
 </div>
 `;
