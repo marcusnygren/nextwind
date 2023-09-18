@@ -66,7 +66,9 @@ export const Stars: FC<StarsProps> = ({
           onMouseLeave={() => setHoverValue(null)}
         >
           <Star
-            isSelected={typeof value === "number" ? i == value - 1 : false}
+            isSelected={
+              typeof value === "number" && !hoverValue ? i <= value - 1 : false
+            }
             isHovered={
               typeof hoverValue === "number" ? i <= hoverValue - 1 : false
             }

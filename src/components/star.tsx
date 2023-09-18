@@ -6,5 +6,5 @@ interface StarProps {
 }
 
 export const Star: FC<StarProps> = ({ isSelected, isHovered }) => {
-  return <>{isHovered ? "/" : isSelected ? "1" : "0"}</>;
+  return <>{isHovered ? "★" : isSelected ? "★" : "☆"}</>;
 };

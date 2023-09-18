@@ -8,27 +8,27 @@ exports[`renders homepage unchanged 1`] = `
     <a
       data-testid="button-1"
     >
-      0
+      ★
     </a>
     <a
       data-testid="button-2"
     >
-      0
+      ★
     </a>
     <a
       data-testid="button-3"
     >
-      1
+      ★
     </a>
     <a
       data-testid="button-4"
     >
-      0
+      ☆
     </a>
     <a
       data-testid="button-5"
     >
-      0
+      ☆
     </a>
   </div>
 </div>
