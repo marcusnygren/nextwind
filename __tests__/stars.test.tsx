@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { Stars } from "../src/components/stars";
+import Stars from "../src/components/stars";
 import "@testing-library/jest-dom";
 
 describe("Stars", () => {
@@ -27,7 +27,7 @@ describe("Stars", () => {
     expect(component.textContent).toEqual("☆☆☆☆☆");
   });
 
-  it.skip("change value on click", () => {
+  it("change value on click", () => {
     render(<Stars starValue={5} numberOfStars={5} />);
     const component = screen.getByTestId("starsComponent");
     expect(component.textContent).toEqual("★★★★★");
@@ -39,7 +39,7 @@ describe("Stars", () => {
     expect(component.textContent).toEqual("★★☆☆☆");
   });
 
-  it.skip("reset value if clicking on the current star value", () => {
+  it("reset value if clicking on the current star value", () => {
     render(<Stars starValue={5} numberOfStars={5} />);
     const component = screen.getByTestId("starsComponent");
     expect(component.textContent).toEqual("★★★★★");

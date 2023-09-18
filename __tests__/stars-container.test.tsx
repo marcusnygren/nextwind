@@ -1,16 +1,16 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import StarContainer from "../src/components/star-container";
+import StarsContainer from "../src/components/stars-container";
 
-describe("Star container", () => {
+describe("Stars container", () => {
   it("should show star value", () => {
-    render(<StarContainer />);
+    render(<StarsContainer />);
     const component = screen.getByTestId("currentValueText");
     expect(component).toHaveTextContent("Current value: 5");
   });
 
   it("change value on click", () => {
-    render(<StarContainer />);
+    render(<StarsContainer />);
     const component = screen.getByTestId("currentValueText");
     expect(component).toHaveTextContent("Current value: 5");
 
@@ -22,7 +22,7 @@ describe("Star container", () => {
   });
 
   it("reset value if clicking on the current star value", () => {
-    render(<StarContainer />);
+    render(<StarsContainer />);
     const component = screen.getByTestId("currentValueText");
     expect(component).toHaveTextContent("Current value: 5");
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Stars } from "./stars";
+import Stars from "./stars";
 
 const StarContainer = () => {
   const [value, setValue] = useState<number>(5);
