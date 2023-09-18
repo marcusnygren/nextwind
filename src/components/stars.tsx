@@ -4,12 +4,12 @@ import { FC, useEffect, useState } from "react";
 import { Star } from "./star";
 
 interface StarsProps {
-  starValue: number | null;
-  numberOfStars: number;
+  starValue?: number | null;
+  numberOfStars?: number | null;
 }
 
 export const Stars: FC<StarsProps> = ({
-  starValue,
+  starValue = null,
   numberOfStars = 5,
 }): JSX.Element => {
   const [value, setValue] = useState<number | null>(null);
@@ -23,8 +23,7 @@ export const Stars: FC<StarsProps> = ({
   }, [starValue]);
 
   function handleClick(value: number) {
-    console.log("clicked " + value);
-    setValue(value);
+    setValue(value + 1);
   }
 
   function renderStars(
@@ -33,9 +32,13 @@ export const Stars: FC<StarsProps> = ({
   ) {
     let array = [];
 
+    if(!numberOfStars) {
+      return <>Star rating not yet available</>
+    }
+
     for (let i = 0; i < numberOfStars; i++) {
       array.push(
-        <a key={i} onClick={() => handleClick(i)}>
+        <a key={i} data-testid={"button-"+i} onClick={() => handleClick(i)}>
           <Star
             isSelected={typeof value === "number" ? i == value - 1 : false}
           />

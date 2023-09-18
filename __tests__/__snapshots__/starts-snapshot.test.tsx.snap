@@ -5,19 +5,29 @@ exports[`renders homepage unchanged 1`] = `
   <div
     data-testid="starsComponent"
   >
-    <a>
+    <a
+      data-testid="button-0"
+    >
       0
     </a>
-    <a>
+    <a
+      data-testid="button-1"
+    >
       0
     </a>
-    <a>
+    <a
+      data-testid="button-2"
+    >
       1
     </a>
-    <a>
+    <a
+      data-testid="button-3"
+    >
       0
     </a>
-    <a>
+    <a
+      data-testid="button-4"
+    >
       0
     </a>
   </div>
