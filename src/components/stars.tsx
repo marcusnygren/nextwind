@@ -1,17 +1,10 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
-
-interface StarProps {
-  isSelected: boolean;
-}
-
-const Star: FC<StarProps> = ({ isSelected }) => {
-  return <>{isSelected ? 1 : 0}</>;
-};
+import { Star } from "./star";
 
 interface StarsProps {
-  starValue: number;
+  starValue: number | null;
   numberOfStars: number;
 }
 
@@ -19,13 +12,20 @@ export const Stars: FC<StarsProps> = ({
   starValue,
   numberOfStars = 5,
 }): JSX.Element => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState<number | null>(null);
 
   useEffect(() => {
     if (typeof starValue === "number") {
       setValue(starValue);
+    } else {
+      setValue(null)
     }
   }, [starValue]);
+
+  function handleClick(value: number) {
+    console.log("clicked " + value)
+    setValue(value)
+  }
 
   function renderStars(
     value: StarsProps["starValue"],
@@ -34,7 +34,9 @@ export const Stars: FC<StarsProps> = ({
     let array = [];
 
     for (let i = 0; i < numberOfStars; i++) {
-      array.push(<Star isSelected={i == value - 1} />);
+      array.push(
+          <Star isSelected={i == value - 1} />
+      );
     }
 
     return array;
@@ -42,7 +44,7 @@ export const Stars: FC<StarsProps> = ({
 
   return (
     <>
-      <p>{renderStars(value, numberOfStars)}</p>
+      {renderStars(value, numberOfStars)}
     </>
   );
 };
