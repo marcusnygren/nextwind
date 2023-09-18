@@ -1,5 +1,5 @@
 import Image from "next/image";
-import StarContainer from "../components/star-container";
+import StarContainer from "../components/starContainer";
 
 export default function Home() {
   return (

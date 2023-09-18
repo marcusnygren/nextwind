@@ -1,14 +1,14 @@
 "use client";
 
-import { FC, useCallback, useState } from "react";
+import { useState } from "react";
 import { Stars } from "./stars";
 
 const StarContainer = () => {
-  const [value, setValue] = useState<number>(0);
+  const [value, setValue] = useState<number>(5);
 
   return (
-    <div data-testid="starContainer"> 
-      Current value: {value}
+    <div>
+      <p data-testid="currentValueText">Current value: {value}</p>
       <Stars starValue={value} numberOfStars={5} onChange={setValue} />
     </div>
   );
