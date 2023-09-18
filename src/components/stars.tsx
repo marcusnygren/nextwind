@@ -4,13 +4,13 @@ import { Star } from "./star";
 interface StarsProps {
   starValue?: number | null;
   numberOfStars?: number | null;
-  handleNewValue?: Function;
+  onChange?: Function;
 }
 
 export const Stars: FC<StarsProps> = ({
   starValue = null,
   numberOfStars = 5,
-  handleNewValue,
+  onChange,
 }): JSX.Element => {
   const [value, setValue] = useState<number | null>(null);
   const [hoverValue, setHoverValue] = useState<number | null>(null);
@@ -32,26 +32,19 @@ export const Stars: FC<StarsProps> = ({
         // reset if clicks same as current
         setValue(null);
 
-        if (handleNewValue) {
-          handleNewValue(0);
+        if (onChange) {
+          onChange(0);
         }
       } else {
         setValue(newValue);
 
-        if (handleNewValue) {
-          handleNewValue(newValue);
+        if (onChange) {
+          onChange(newValue);
         }
       }
     },
     [value]
   );
-
-  const handleMouseOver = useCallback(
-    (newHoverValue: number) => setHoverValue(newHoverValue),
-    []
-  );
-
-  const handleMouseLeave = useCallback(() => setHoverValue(null), []);
 
   function renderStars(
     value: StarsProps["starValue"],
@@ -69,8 +62,8 @@ export const Stars: FC<StarsProps> = ({
           key={i}
           data-testid={"button-" + (i + 1)}
           onClick={() => handleClick(i + 1)}
-          onMouseOver={() => handleMouseOver(i + 1)}
-          onMouseLeave={() => handleMouseLeave()}
+          onMouseOver={() => setHoverValue(i + 1)}
+          onMouseLeave={() => setHoverValue(null)}
         >
           <Star
             isSelected={typeof value === "number" ? i == value - 1 : false}

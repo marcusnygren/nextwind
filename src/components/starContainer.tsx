@@ -6,13 +6,11 @@ import { Stars } from "./stars";
 const StarContainer = () => {
   const [value, setValue] = useState<number>(0);
 
-  const handleClick = useCallback((newValue: number) => setValue(newValue), [value]);
-
   return (
-    <>
+    <div data-testid="starContainer"> 
       Current value: {value}
-      <Stars starValue={value} numberOfStars={5} handleNewValue={handleClick} />
-    </>
+      <Stars starValue={value} numberOfStars={5} onChange={setValue} />
+    </div>
   );
 };
 
