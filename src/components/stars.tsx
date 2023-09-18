@@ -1,16 +1,16 @@
-"use client";
-
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { Star } from "./star";
 
 interface StarsProps {
   starValue?: number | null;
   numberOfStars?: number | null;
+  handleNewValue?: Function;
 }
 
 export const Stars: FC<StarsProps> = ({
   starValue = null,
   numberOfStars = 5,
+  handleNewValue,
 }): JSX.Element => {
   const [value, setValue] = useState<number | null>(null);
   const [hoverValue, setHoverValue] = useState<number | null>(null);
@@ -23,25 +23,35 @@ export const Stars: FC<StarsProps> = ({
     }
   }, [starValue]);
 
-  function handleClick(newValue: number) {
-    // immediately remove hover styling on value click so the user can see the new value
-    setHoverValue(null);
+  const handleClick = useCallback(
+    (newValue: number) => {
+      // immediately remove hover styling on value click so the user can see the new value
+      setHoverValue(null);
 
-    if (newValue === value) {
-      // reset if clicks same as current
-      setValue(null);
-    } else {
-      setValue(newValue);
-    }
-  }
+      if (newValue === value) {
+        // reset if clicks same as current
+        setValue(null);
 
-  function handleMouseOver(newHoverValue: number) {
-    setHoverValue(newHoverValue);
-  }
+        if (handleNewValue) {
+          handleNewValue(0);
+        }
+      } else {
+        setValue(newValue);
 
-  function handleMouseLeave() {
-    setHoverValue(null);
-  }
+        if (handleNewValue) {
+          handleNewValue(newValue);
+        }
+      }
+    },
+    [value]
+  );
+
+  const handleMouseOver = useCallback(
+    (newHoverValue: number) => setHoverValue(newHoverValue),
+    []
+  );
+
+  const handleMouseLeave = useCallback(() => setHoverValue(null), []);
 
   function renderStars(
     value: StarsProps["starValue"],
