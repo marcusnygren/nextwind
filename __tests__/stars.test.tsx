@@ -38,4 +38,12 @@ describe("Stars", () => {
     fireEvent.click(screen.getByTestId("button-1"));
     expect(component.textContent).toEqual("01000");
   });
+
+  it("reset value if clicking on the current star value", () => {
+    render(<Stars starValue={5} numberOfStars={5} />);
+    const component = screen.getByTestId("starsComponent");
+    expect(component.textContent).toEqual("00001");
+    fireEvent.click(screen.getByTestId("button-4"));
+    expect(component.textContent).toEqual("00000");
+  });
 });
