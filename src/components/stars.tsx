@@ -13,6 +13,7 @@ export const Stars: FC<StarsProps> = ({
   numberOfStars = 5,
 }): JSX.Element => {
   const [value, setValue] = useState<number | null>(null);
+  const [hoverValue, setHoverValue] = useState<number | null>(null);
 
   useEffect(() => {
     if (typeof starValue === "number") {
@@ -23,12 +24,23 @@ export const Stars: FC<StarsProps> = ({
   }, [starValue]);
 
   function handleClick(newValue: number) {
+    // immediately remove hover styling on value click so the user can see the new value
+    setHoverValue(null);
+
     if (newValue === value) {
-      //nullify
+      // reset if clicks same as current
       setValue(null);
     } else {
       setValue(newValue);
     }
+  }
+
+  function handleMouseOver(newHoverValue: number) {
+    setHoverValue(newHoverValue);
+  }
+
+  function handleMouseLeave() {
+    setHoverValue(null);
   }
 
   function renderStars(
@@ -45,11 +57,16 @@ export const Stars: FC<StarsProps> = ({
       array.push(
         <a
           key={i}
-          data-testid={"button-" + i}
+          data-testid={"button-" + (i + 1)}
           onClick={() => handleClick(i + 1)}
+          onMouseOver={() => handleMouseOver(i + 1)}
+          onMouseLeave={() => handleMouseLeave()}
         >
           <Star
             isSelected={typeof value === "number" ? i == value - 1 : false}
+            isHovered={
+              typeof hoverValue === "number" ? i <= hoverValue - 1 : false
+            }
           />
         </a>
       );

@@ -6,11 +6,6 @@ exports[`renders homepage unchanged 1`] = `
     data-testid="starsComponent"
   >
     <a
-      data-testid="button-0"
-    >
-      0
-    </a>
-    <a
       data-testid="button-1"
     >
       0
@@ -18,15 +13,20 @@ exports[`renders homepage unchanged 1`] = `
     <a
       data-testid="button-2"
     >
-      1
+      0
     </a>
     <a
       data-testid="button-3"
     >
-      0
+      1
     </a>
     <a
       data-testid="button-4"
+    >
+      0
+    </a>
+    <a
+      data-testid="button-5"
     >
       0
     </a>

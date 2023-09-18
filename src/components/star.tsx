@@ -2,8 +2,9 @@ import { FC } from "react";
 
 interface StarProps {
   isSelected: boolean;
+  isHovered: boolean;
 }
 
-export const Star: FC<StarProps> = ({ isSelected }) => {
-  return <>{isSelected ? 1 : 0}</>;
+export const Star: FC<StarProps> = ({ isSelected, isHovered }) => {
+  return <>{isHovered ? "/" : isSelected ? "1" : "0"}</>;
 };
