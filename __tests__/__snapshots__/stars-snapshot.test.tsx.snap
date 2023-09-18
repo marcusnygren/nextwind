@@ -8,17 +8,17 @@ exports[`renders stars unchanged 1`] = `
     <a
       data-testid="button-1"
     >
-      ★
+      ☆
     </a>
     <a
       data-testid="button-2"
     >
-      ★
+      ☆
     </a>
     <a
       data-testid="button-3"
     >
-      ★
+      ☆
     </a>
     <a
       data-testid="button-4"

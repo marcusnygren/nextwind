@@ -4,19 +4,19 @@ import "@testing-library/jest-dom";
 
 describe("Stars", () => {
   it("handle bad data", () => {
-    render(<Stars starValue={1} numberOfStars={null} />);
+    render(<Stars initialValue={1} numberOfStars={null} />);
     const component = screen.getByTestId("starsComponent");
     expect(component.textContent).toEqual("Star rating not yet available");
   });
 
   it("renders lowest value", () => {
-    render(<Stars starValue={1} numberOfStars={5} />);
+    render(<Stars initialValue={1} numberOfStars={5} />);
     const component = screen.getByTestId("starsComponent");
     expect(component.textContent).toEqual("★☆☆☆☆");
   });
 
   it("renders highest value", () => {
-    render(<Stars starValue={5} numberOfStars={5} />);
+    render(<Stars initialValue={5} numberOfStars={5} />);
     const component = screen.getByTestId("starsComponent");
     expect(component.textContent).toEqual("★★★★★");
   });
@@ -28,7 +28,7 @@ describe("Stars", () => {
   });
 
   it("change value on click", () => {
-    render(<Stars starValue={5} numberOfStars={5} />);
+    render(<Stars initialValue={5} numberOfStars={5} />);
     const component = screen.getByTestId("starsComponent");
     expect(component.textContent).toEqual("★★★★★");
 
@@ -40,7 +40,7 @@ describe("Stars", () => {
   });
 
   it("reset value if clicking on the current star value", () => {
-    render(<Stars starValue={5} numberOfStars={5} />);
+    render(<Stars initialValue={5} numberOfStars={5} />);
     const component = screen.getByTestId("starsComponent");
     expect(component.textContent).toEqual("★★★★★");
     fireEvent.click(screen.getByTestId("button-5"));
@@ -48,7 +48,7 @@ describe("Stars", () => {
   });
 
   it("hover state", () => {
-    render(<Stars starValue={5} numberOfStars={5} />);
+    render(<Stars initialValue={5} numberOfStars={5} />);
     const component = screen.getByTestId("starsComponent");
     expect(component.textContent).toEqual("★★★★★");
     fireEvent.mouseOver(screen.getByTestId("button-4"));

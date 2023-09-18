@@ -7,10 +7,10 @@ const StarContainer = () => {
   const [value, setValue] = useState<number>(5);
 
   return (
-    <div>
+    <>
       <p data-testid="currentValueText">Current value: {value}</p>
-      <Stars starValue={value} numberOfStars={5} onChange={setValue} />
-    </div>
+      <Stars initialValue={value} numberOfStars={5} onChange={setValue} />
+    </>
   );
 };
 

@@ -4,13 +4,13 @@ import { FC, useCallback, useEffect, useState } from "react";
 import { Star } from "./star";
 
 interface StarsProps {
-  starValue?: number | null;
+  initialValue?: number | null;
   numberOfStars?: number | null;
   onChange?: Function;
 }
 
 const Stars: FC<StarsProps> = ({
-  starValue = null,
+  initialValue = null,
   numberOfStars = 5,
   onChange,
 }): JSX.Element => {
@@ -18,12 +18,12 @@ const Stars: FC<StarsProps> = ({
   const [hoverValue, setHoverValue] = useState<number | null>(null);
 
   useEffect(() => {
-    if (typeof starValue === "number") {
-      setValue(starValue);
+    if (typeof initialValue === "number") {
+      setValue(initialValue);
     } else {
       setValue(null);
     }
-  }, [starValue]);
+  }, [initialValue]);
 
   const handleClick = useCallback(
     (newValue: number) => {
@@ -49,7 +49,7 @@ const Stars: FC<StarsProps> = ({
   );
 
   function renderStars(
-    value: StarsProps["starValue"],
+    value: StarsProps["initialValue"],
     numberOfStars: StarsProps["numberOfStars"]
   ) {
     let array = [];
