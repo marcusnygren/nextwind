@@ -1,26 +1,24 @@
 "use client";
 
 import { FC, useCallback, useEffect, useState } from "react";
-import { Star } from "./star";
+import StarButton from "./star-button";
 
 interface StarsProps {
-  initialValue?: number | null;
+  initialValue?: number;
   numberOfStars?: number | null;
   onChange?: Function;
 }
 
 const Stars: FC<StarsProps> = ({
-  initialValue = null,
+  initialValue = 0,
   numberOfStars = 5,
   onChange,
 }): JSX.Element => {
-  const [value, setValue] = useState<number | null>(null);
-  const [hoverValue, setHoverValue] = useState<number | null>(null);
+  const [value, setValue] = useState<number>(0);
+  const [hoverValue, setHoverValue] = useState<number>(0);
 
   // set the star value immediately if props has been given
-  useEffect(() => {
-    typeof initialValue === "number" ? setValue(initialValue) : setValue(null);
-  }, [initialValue]);
+  useEffect(() => setValue(initialValue), [initialValue]);
 
   const setNewValue = useCallback(
     (newValue: number) => {
@@ -34,40 +32,24 @@ const Stars: FC<StarsProps> = ({
     [value]
   );
 
-  function renderStars(
-    value: StarsProps["initialValue"],
-    numberOfStars: StarsProps["numberOfStars"]
-  ) {
-    if (!numberOfStars) {
-      return <>Star rating not yet available</>;
-    }
-
-    return [...Array(numberOfStars)].map((_, i) => {
-      const ratingValue = i + 1;
-
-      return (
-        <a
-          key={i}
-          data-testid={"button-" + ratingValue}
-          onClick={() => setNewValue(ratingValue)}
-          onMouseOver={() => setHoverValue(ratingValue)}
-          onMouseLeave={() => setHoverValue(null)}
-        >
-          <Star
-            isSelected={
-              typeof value === "number" && !hoverValue ? i <= value - 1 : false
-            }
-            isHovered={
-              typeof hoverValue === "number" ? i <= hoverValue - 1 : false
-            }
-          />
-        </a>
-      );
-    });
+  if (!numberOfStars) {
+    return <>Star rating not yet available</>;
   }
 
   return (
-    <div data-testid="starsComponent">{renderStars(value, numberOfStars)}</div>
+    <div data-testid="starsComponent">
+      {[...Array(numberOfStars)].map((_, i) => {
+        return (
+          <StarButton
+            index={i}
+            currentRating={value}
+            hoveredRating={hoverValue}
+            handleHover={setHoverValue}
+            handleClick={setNewValue}
+          />
+        );
+      })}
+    </div>
   );
 };
 

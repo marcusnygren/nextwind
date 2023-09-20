@@ -5,7 +5,7 @@ exports[`renders stars unchanged 1`] = `
   <div
     data-testid="starsComponent"
   >
-    <a
+    <button
       data-testid="button-1"
     >
       <span
@@ -13,8 +13,8 @@ exports[`renders stars unchanged 1`] = `
       >
         ★
       </span>
-    </a>
-    <a
+    </button>
+    <button
       data-testid="button-2"
     >
       <span
@@ -22,8 +22,8 @@ exports[`renders stars unchanged 1`] = `
       >
         ★
       </span>
-    </a>
-    <a
+    </button>
+    <button
       data-testid="button-3"
     >
       <span
@@ -31,21 +31,21 @@ exports[`renders stars unchanged 1`] = `
       >
         ★
       </span>
-    </a>
-    <a
+    </button>
+    <button
       data-testid="button-4"
     >
       <span>
         ☆
       </span>
-    </a>
-    <a
+    </button>
+    <button
       data-testid="button-5"
     >
       <span>
         ☆
       </span>
-    </a>
+    </button>
   </div>
 </div>
 `;
