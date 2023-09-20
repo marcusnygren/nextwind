@@ -8,27 +8,43 @@ exports[`renders stars unchanged 1`] = `
     <a
       data-testid="button-1"
     >
-      ★
+      <span
+        class="text-yellow-600"
+      >
+        ★
+      </span>
     </a>
     <a
       data-testid="button-2"
     >
-      ★
+      <span
+        class="text-yellow-600"
+      >
+        ★
+      </span>
     </a>
     <a
       data-testid="button-3"
     >
-      ★
+      <span
+        class="text-yellow-600"
+      >
+        ★
+      </span>
     </a>
     <a
       data-testid="button-4"
     >
-      ☆
+      <span>
+        ☆
+      </span>
     </a>
     <a
       data-testid="button-5"
     >
-      ☆
+      <span>
+        ☆
+      </span>
     </a>
   </div>
 </div>

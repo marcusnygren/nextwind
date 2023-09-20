@@ -17,33 +17,19 @@ const Stars: FC<StarsProps> = ({
   const [value, setValue] = useState<number | null>(null);
   const [hoverValue, setHoverValue] = useState<number | null>(null);
 
+  // set the star value immediately if props has been given
   useEffect(() => {
-    if (typeof initialValue === "number") {
-      setValue(initialValue);
-    } else {
-      setValue(null);
-    }
+    typeof initialValue === "number" ? setValue(initialValue) : setValue(null);
   }, [initialValue]);
 
-  const handleClick = useCallback(
+  const setNewValue = useCallback(
     (newValue: number) => {
-      // immediately remove hover styling on value click so the user can see the new value
-      setHoverValue(null);
+      setHoverValue(0); // immediately remove hover styling on value click so the user can see the new value
 
-      if (newValue === value) {
-        // reset if clicks same as current
-        setValue(null);
-
-        if (onChange) {
-          onChange(0);
-        }
-      } else {
-        setValue(newValue);
-
-        if (onChange) {
-          onChange(newValue);
-        }
-      }
+      // set the new value
+      const newRatingValue = newValue === value ? 0 : newValue;
+      setValue(newRatingValue);
+      onChange && onChange(newRatingValue); // let parent know as well
     },
     [value]
   );
@@ -56,24 +42,28 @@ const Stars: FC<StarsProps> = ({
       return <>Star rating not yet available</>;
     }
 
-    return [...Array(numberOfStars)].map((_, i) => (
-      <a
-        key={i}
-        data-testid={"button-" + (i + 1)}
-        onClick={() => handleClick(i + 1)}
-        onMouseOver={() => setHoverValue(i + 1)}
-        onMouseLeave={() => setHoverValue(null)}
-      >
-        <Star
-          isSelected={
-            typeof value === "number" && !hoverValue ? i <= value - 1 : false
-          }
-          isHovered={
-            typeof hoverValue === "number" ? i <= hoverValue - 1 : false
-          }
-        />
-      </a>
-    ));
+    return [...Array(numberOfStars)].map((_, i) => {
+      const ratingValue = i + 1;
+
+      return (
+        <a
+          key={i}
+          data-testid={"button-" + ratingValue}
+          onClick={() => setNewValue(ratingValue)}
+          onMouseOver={() => setHoverValue(ratingValue)}
+          onMouseLeave={() => setHoverValue(null)}
+        >
+          <Star
+            isSelected={
+              typeof value === "number" && !hoverValue ? i <= value - 1 : false
+            }
+            isHovered={
+              typeof hoverValue === "number" ? i <= hoverValue - 1 : false
+            }
+          />
+        </a>
+      );
+    });
   }
 
   return (

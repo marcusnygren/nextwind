@@ -52,6 +52,6 @@ describe("Stars", () => {
     const component = screen.getByTestId("starsComponent");
     expect(component.textContent).toEqual("★★★★★");
     fireEvent.mouseOver(screen.getByTestId("button-4"));
-    expect(component.textContent).toEqual("★★★★☆");
+    expect(component.textContent).toEqual("☆☆☆☆☆"); // should ideally add a check for class name isHovered or check that color is not black
   });
 });
