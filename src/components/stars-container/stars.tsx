@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { FC, useCallback, useEffect, useState } from "react";
 import { Star } from "./star";
@@ -52,34 +52,28 @@ const Stars: FC<StarsProps> = ({
     value: StarsProps["initialValue"],
     numberOfStars: StarsProps["numberOfStars"]
   ) {
-    let array = [];
-
     if (!numberOfStars) {
       return <>Star rating not yet available</>;
     }
 
-    for (let i = 0; i < numberOfStars; i++) {
-      array.push(
-        <a
-          key={i}
-          data-testid={"button-" + (i + 1)}
-          onClick={() => handleClick(i + 1)}
-          onMouseOver={() => setHoverValue(i + 1)}
-          onMouseLeave={() => setHoverValue(null)}
-        >
-          <Star
-            isSelected={
-              typeof value === "number" && !hoverValue ? i <= value - 1 : false
-            }
-            isHovered={
-              typeof hoverValue === "number" ? i <= hoverValue - 1 : false
-            }
-          />
-        </a>
-      );
-    }
-
-    return array;
+    return [...Array(numberOfStars)].map((_, i) => (
+      <a
+        key={i}
+        data-testid={"button-" + (i + 1)}
+        onClick={() => handleClick(i + 1)}
+        onMouseOver={() => setHoverValue(i + 1)}
+        onMouseLeave={() => setHoverValue(null)}
+      >
+        <Star
+          isSelected={
+            typeof value === "number" && !hoverValue ? i <= value - 1 : false
+          }
+          isHovered={
+            typeof hoverValue === "number" ? i <= hoverValue - 1 : false
+          }
+        />
+      </a>
+    ));
   }
 
   return (
@@ -87,4 +81,4 @@ const Stars: FC<StarsProps> = ({
   );
 };
 
-export default Stars
+export default Stars;

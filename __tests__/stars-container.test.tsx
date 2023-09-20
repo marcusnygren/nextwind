@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import StarsContainer from "../src/components/stars-container";
+import StarsContainer from "@/components/stars-container";
 
 describe("Stars container", () => {
   it("should show star value", () => {

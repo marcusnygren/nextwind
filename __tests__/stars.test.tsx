@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Stars from "../src/components/stars";
+import Stars from "@/components/stars-container/stars";
 import "@testing-library/jest-dom";
 
 describe("Stars", () => {
